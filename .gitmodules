@@ -1,0 +1,3 @@
+[submodule "Megatron-LM_HBFP"]
+	path = Megatron-LM_HBFP
+	url = https://github.com/SimlaBurcu/Megatron-LM_HBFP.git

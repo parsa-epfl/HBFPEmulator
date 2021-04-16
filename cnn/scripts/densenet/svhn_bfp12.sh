@@ -1,0 +1,12 @@
+python main.py --type cnn --arch densenet40 --data svhn \
+       --densenet_growth_rate 12 --densenet_bc_mode False \
+       --densenet_compression 1.0 --drop_rate 0.2 \
+       --lr 0.1 --lr_decay True \
+       --lr_decay_epochs 20,30 --num_epochs 40 \
+       --use_nesterov True --momentum 0.9 --weight_decay 1e-4\
+       --batch_size 64 \
+       --avg_model True  --lr_warmup False \
+       --num_workers 2 --eval_freq 1  --reshuffle_per_epoch True \
+       --lr_lars False --lr_scale False \
+       --world_size 2 --device gpu --save_all_models True \
+       --num_format bfp --rounding_mode stoc --mant_bits 11 --bfp_tile_size 24  --weight_mant_bits 15

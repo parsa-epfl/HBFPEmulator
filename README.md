@@ -5,17 +5,20 @@ We train DNNs with the proposed HBFP approach, using BFP in the compute-intensiv
 
 We handle the weights in the optimizer. We create a shell optimizer that takes the original optimizer, performs its update function in FP32 and converts the weights to two BFP formats: one with wide and another with narrow mantissas. The former is used in future weight updates while the latter is used in forward and backward passes. We also use this same mechanism to simulate different tile sizes for weight matrices. Finally, for convolutional layers, we tile the two outer feature map dimensions of the weight matrices.
 
+HBFP can be deployed easily to any model by using only the files under the [`bfp/`](./bfp) directory. For a quick understanding, please check the usage of the
+BFP functions in our ["Hello world!" example](./getting_started/). The folder also contains the sufficient HBFP-related files.
+
+## Getting Started
 Running the BFP tests:
 ```
 python bfp/bfp_ops.py
 ```
-
-## CNNs
 Training the "Hello world!" example: ResNet18 on CIFAR10:
 ```
 python main.py --type getting_started --num_format bfp --rounding_mode stoc --mant_bits 8 --bfp_tile_size 0 --weight_mant_bits 16 --device {c,g}pu
 ```
-Training one of the CNN models with the selected dataset
+## CNNs
+Training one of the CNN models with the selected dataset:
 ```
 python main.py --type cnn --arch resnet50 --data cifar100 \
 --lr 0.1 --lr_decay True \
@@ -41,7 +44,7 @@ LSTM implementation is adapted from Salesforce's [LSTM and QRNN Language Model T
 
 Inside the `lstm/` folder, run `getdata.sh` to acquire the Penn Treebank and WikiText-2 datasets. This step is essential for training.
 
-Training the LSTM model with the Penn Treebank dataset
+Training the LSTM model with the Penn Treebank dataset:
 ```
 CUDA_VISIBLE_DEVICES=0 python main.py --type lstm --batch_size 20 \
 --data data/penn --dropouti 0.4 --dropouth 0.25 \

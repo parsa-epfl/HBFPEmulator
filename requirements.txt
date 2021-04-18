@@ -1,3 +1,8 @@
+torch
+torchvision
+numpy
+lmdb
+opencv-contrib-python
 tqdm
 tensorpack
 dill

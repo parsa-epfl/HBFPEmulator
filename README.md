@@ -5,10 +5,19 @@ We train DNNs with the proposed HBFP approach, using BFP in the compute-intensiv
 
 We handle the weights in the optimizer. We create a shell optimizer that takes the original optimizer, performs its update function in FP32 and converts the weights to two BFP formats: one with wide and another with narrow mantissas. The former is used in future weight updates while the latter is used in forward and backward passes. We also use this same mechanism to simulate different tile sizes for weight matrices. Finally, for convolutional layers, we tile the two outer feature map dimensions of the weight matrices.
 
+##Setup
+HBFP_Emulator contains several example DNN models including CNNs, LSTMs and BERT (fork of Megatron-LM and included as a submodule). We have tested HBFP_Emulator on Python 3.8.5 and PyTorch 1.8. To install the emulator with all the requirements and submodules, run the following commands:
+```
+git clone --recurse-submodules https://github.com/parsa-epfl/HBFP_Emulator.git
+cd HBFP_Emulator
+pip install -r requirements.txt
+```
+The requirements and installation instructions for the submodule Megatron-LM_HBFP can be found under the project repository.
+
+## Getting Started
 HBFP can be deployed easily to any model by using only the files under the [`bfp/`](./bfp) directory. For a quick understanding, please check the usage of the
 BFP functions in our ["Hello world!" example](./getting_started/). The folder also contains the sufficient HBFP-related files.
 
-## Getting Started
 Running the BFP tests:
 ```
 python bfp/bfp_ops.py
@@ -55,4 +64,4 @@ CUDA_VISIBLE_DEVICES=0 python main.py --type lstm --batch_size 20 \
 We again have provided several scripts for training the model in [`lstm/scripts`](./lstm/scripts) directory. Scripts need to be called from the main hbfp project directory (e.g., `bash lstm/scripts/run_bfp8.sh`).
 
 ## BERT
-For HBFP training of the BERT model we adapted NVIDIA's [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/) project.
+For HBFP training of the BERT model we adapted NVIDIA's [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/) project. Inside the `Megatron-LM_HBFP/` folder, check `examples/hbfp8.sh` for the command to pretrain a BERT model using HBFP.  

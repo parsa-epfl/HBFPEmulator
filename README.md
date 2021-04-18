@@ -65,4 +65,6 @@ CUDA_VISIBLE_DEVICES=0 python main.py --type lstm --batch_size 20 \
 We again have provided several scripts for training the model in [`lstm/scripts`](./lstm/scripts) directory. Scripts need to be called from the main hbfp project directory (e.g., `bash lstm/scripts/run_bfp8.sh`).
 
 ## BERT
-For HBFP training of the BERT model we adapted NVIDIA's [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/) project. Inside the `Megatron-LM_HBFP/` folder, check [`examples/hbfp8.sh`](./Megatron-LM_HBFP/examples/hbfp8.sh) for the command to pretrain a BERT model using HBFP.  
+For HBFP training of the BERT model we adapted NVIDIA's [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/) project.
+
+Check the `Megatron-LM_HBFP/examples/` folder for the currently available commands for pretraining a BERT model with HBFP.

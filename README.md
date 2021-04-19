@@ -1,4 +1,4 @@
-#  ColTrain HBFP Training Emulator
+#  ColTraIn HBFP Training Emulator
 [HBFP](https://papers.nips.cc/paper/2018/file/6a9aeddfc689c1d0e3b9ccc3ab651bc5-Paper.pdf) is a hybrid Block Floating-Point (BFP) - Floating-Point (FP) number representation for DNN training introduced by [ColTraIn: Co-located DNN Training and Inference](https://parsa.epfl.ch/coltrain/) team of [PARSA](https://parsa.epfl.ch/) and [MLO](https://www.epfl.ch/labs/mlo/) at EPFL. HBFP offers the best of both worlds: the high accuracy of floating-point at the superior hardware density of fixed-point by performing all dot products in BFP and other operations in FP32. For a wide variety of models, HBFP matches floating-point’s accuracy while enabling hardware implementations that deliver up to 8.5x higher throughput. This repository is for ongoing research on training DNNs with HBFP.
 
 More information is available on the ColTraIn [website](https://parsa.epfl.ch/coltrain/).

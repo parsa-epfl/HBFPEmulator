@@ -11,10 +11,10 @@ We train DNNs with the proposed HBFP approach, using BFP in the compute-intensiv
 * We handle the weights in the optimizer. We create a shell optimizer that takes the original optimizer, performs its update function in FP32 and converts the weights to two BFP formats: one with wide and another with narrow mantissas. The former is used in future weight updates while the latter is used in forward and backward passes. We also use this same mechanism to simulate different tile sizes for weight matrices. Finally, for convolutional layers, we tile the two outer feature map dimensions of the weight matrices.
 
 ## Setup
-HBFP_Emulator contains several example DNN models including CNNs, LSTMs and BERT (fork of Megatron-LM and included as a submodule). We have tested HBFP_Emulator on Python 3.8.5 and PyTorch 1.8. To install the emulator with all the requirements and submodules, run the following commands:
+HBFPEmulator contains several example DNN models including CNNs, LSTMs and BERT (fork of Megatron-LM and included as a submodule). We have tested HBFPEmulator on Python 3.8.5 and PyTorch 1.8. To install the emulator with all the requirements and submodules, run the following commands:
 ```
-git clone --recurse-submodules https://github.com/parsa-epfl/HBFP_Emulator.git
-cd HBFP_Emulator
+git clone --recurse-submodules https://github.com/parsa-epfl/HBFPEmulator.git
+cd HBFPEmulator
 pip install -r requirements.txt
 ```
 The requirements and installation instructions for the submodule Megatron-LM_HBFP can be found under the project repository.

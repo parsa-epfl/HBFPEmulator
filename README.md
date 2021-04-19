@@ -1,5 +1,5 @@
 # Training DNNs with Hybrid Block Floating Point (HBFP)
-[HBFP](https://papers.nips.cc/paper/2018/file/6a9aeddfc689c1d0e3b9ccc3ab651bc5-Paper.pdf) is a hybrid Block Floating-Point (BFP) - Floating-Point (FP) number representation for DNN training introduced by [ColTraIn: Co-located DNN Training and Inference](https://parsa.epfl.ch/coltrain/) team of [PARSA](https://parsa.epfl.ch/) at EPFL. HBFP offers the best of both worlds: the high accuracy of floating-point at the superior hardware density of fixed-point by performing all dot products in BFP and other operations in FP32. For a wide variety of models, HBFP matches floating-point’s accuracy while enabling hardware implementations that deliver up to 8.5x higher throughput. This repository is for ongoing research on training DNNs with HBFP.
+[HBFP](https://papers.nips.cc/paper/2018/file/6a9aeddfc689c1d0e3b9ccc3ab651bc5-Paper.pdf) is a hybrid Block Floating-Point (BFP) - Floating-Point (FP) number representation for DNN training introduced by [ColTraIn: Co-located DNN Training and Inference](https://parsa.epfl.ch/coltrain/) team of [PARSA](https://parsa.epfl.ch/) and [MLO](https://www.epfl.ch/labs/mlo/) at EPFL. HBFP offers the best of both worlds: the high accuracy of floating-point at the superior hardware density of fixed-point by performing all dot products in BFP and other operations in FP32. For a wide variety of models, HBFP matches floating-point’s accuracy while enabling hardware implementations that deliver up to 8.5x higher throughput. This repository is for ongoing research on training DNNs with HBFP.
 
 We train DNNs with the proposed HBFP approach, using BFP in the compute-intensive operations (matrix multiplications, convolutions, and their backward passes) and FP32 in the other operations. We simulate BFP dot products in GPUs by modifying PyTorch’s linear and convolution layers to reproduce the behaviour of BFP matrix multipliers. We redefine PyTorch’s convolution and linear modules using its `autograd.function` feature to create new modules that process the inputs and outputs of both the forward and backward passes to simulate BFP. In the forward pass, we convert the activations to BFP, giving the x tensor one exponent per training input. Then we execute the target operation in native floating-point arithmetic. In the backward pass, we perform the same pre-/post-processing of the inputs/outputs of the x derivative.
 
@@ -68,3 +68,8 @@ We again have provided several scripts for training the model in [`lstm/scripts`
 For HBFP training of the BERT model we adapted NVIDIA's [Megatron-LM](https://github.com/NVIDIA/Megatron-LM/) project.
 
 Check the `Megatron-LM_HBFP/examples/` folder for the currently available commands for pretraining a BERT model with HBFP.
+
+## Contributors
+Simla Burcu HARMA
+Mario DRUMOND
+Tao LIN

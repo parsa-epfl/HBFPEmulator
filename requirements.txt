@@ -6,3 +6,4 @@ opencv-contrib-python
 tqdm
 tensorpack
 dill
+tensorflow>1.15

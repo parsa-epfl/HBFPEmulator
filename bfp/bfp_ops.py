@@ -211,7 +211,7 @@ def _gen_bfp_op(op, name, bfp_args):
     class NewOpIn(torch.autograd.Function):
         @staticmethod
         def forward(ctx, x, w):
-            return (float_to_bfp_batched(x, **bfp_args), w)
+            return (float_to_bfp_tiled(x, **bfp_args), float_to_bfp_tiled(w, **bfp_args))
 
         @staticmethod
         def backward(ctx, grad_x, grad_w):
@@ -227,7 +227,7 @@ def _gen_bfp_op(op, name, bfp_args):
 
         @staticmethod
         def backward(ctx, op_out_grad):
-            return float_to_bfp_batched(op_out_grad, **bfp_args)
+            return float_to_bfp_tiled(op_out_grad, **bfp_args)
 
     NewOpOut.__name__ = name + '_Out'
     new_op_out = NewOpOut.apply

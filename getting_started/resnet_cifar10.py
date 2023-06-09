@@ -211,7 +211,7 @@ def train(net, trainset, trainloader, testset, testloader, classes, args):
     print('Finished Training')
 
 
-    torch.save(net.state_dict(), PATH)
+    torch.save(net.module.state_dict(), PATH)
 
 def test_model(net, trainset, trainloader, testset, testloader, classes, args):
     device = torch.device("cuda:0" if torch.cuda.is_available() and args.device != "cpu" else "cpu")
